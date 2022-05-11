@@ -3,6 +3,7 @@ require('sinatra')
 require('sinatra/reloader')
 require('./lib/album')
 require('./lib/song')
+require('./lib/artists')
 require('pry')
 require('./db_access.rb')
 also_reload('lib/**/*.rb')
@@ -105,9 +106,9 @@ delete('/albums/:id/songs/:song_id') do
   erb(:album)
 end
 
-get('/custom_route') do
-  "We can even create custom routes, but we should only do this when needed."
+get('/artists')
+  @artists = Artist.all
+  erb(:artists)
 end
-
 
 

@@ -1,18 +1,17 @@
 require('spec_helper')
 
-# describe '#Album' do
-
-#   describe('#songs') do
-#     it("returns an album's songs") do
-#       album = Album.new("Giant Steps", nil)
-#       album.save()
-#       song = Song.new("Naima", album.id, nil)
-#       song.save()
-#       song2 = Song.new("Cousin Mary", album.id, nil)
-#       song.save()
-#       expect(album.songs).to(eq([song, song2]))
-#     end
-  # end
+describe '#Album' do
+  describe('#songs') do
+    it("returns an album's songs") do
+      album = Album.new(:name => "Giant Steps", :id => nil)
+      album.save()
+      song = Song.new(:name => "Naima", :album_id => album.id, :id => nil)
+      song.save()
+      song2 = Song.new(:name => "Cousin Mary", :album_id => album.id, :id => nil)
+      song2.save()
+      expect(album.songs).to(eq([song, song2]))
+    end
+  end
   
   describe('.all') do
     it("returns an empty array when there are no albums") do
@@ -22,9 +21,9 @@ require('spec_helper')
 
   describe('#save') do
     it("saves an album") do
-      album = Album.new(:name => "Giant Steps", :id => nil) #nil added as second argument
+      album = Album.new(:name => "Giant Steps", :id => nil)
       album.save()
-      album2 = Album.new(:name => "Blue", :id => nil) #nil added as second argument
+      album2 = Album.new(:name => "Blue", :id => nil)
       album2.save()
       expect(Album.all).to(eq([album, album2]))
     end
@@ -59,14 +58,14 @@ require('spec_helper')
     end
   end
 
-#   describe('#update') do
-#   it("updates an album by id") do
-#     album = Album.new(:name => "Giant Steps", :id => nil)
-#     album.save()
-#     album.update("A Love Supreme")
-#     expect(Album.name).to(eq("A Love Supreme"))
-#   end
-# end
+  describe('#update') do
+  it("updates an album by id") do
+    album = Album.new(:name => "Giant Steps", :id => nil)
+    album.save()
+    album.update("A Love Supreme")
+    expect(album.name).to(eq("A Love Supreme"))
+  end
+end
 
   describe('#delete') do
   it("deletes all songs belonging to a deleted album") do
@@ -78,5 +77,4 @@ require('spec_helper')
     expect(Song.find(song.id)).to(eq(nil))
     end
   end
-
-# end
+end

@@ -1,8 +1,8 @@
-require('capybara/rspec')
-require('./app')
-require('spec_helper')
-Capybara.app = Sinatra::Application
-set(:show_exceptions, false)
+# require('capybara/rspec')
+# require('./app')
+# require('spec_helper')
+# Capybara.app = Sinatra::Application
+# set(:show_exceptions, false)
 
 # describe('create an album path', {:type => :feature}) do
 #   it('creates an album and then goes to the album page') do

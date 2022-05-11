@@ -1,16 +1,15 @@
 require('spec_helper')
 
-# describe '#Song' do
-
-
-
-  # describe('#album') do
-  #   it("finds the album a song belongs to") do
-  #     song = Song.new("Naima", @album.id, nil)
-  #     song.save()
-  #     expect(song.album()).to(eq(@album))
-  #   end
-  # end
+describe '#Song' do
+  describe('#album') do
+    it("finds the album a song belongs to") do
+      album = Album.new(:name => "Pinkerton", :id => nil)
+      album.save()
+      song = Song.new(:name => "Naima", :album_id => album.id, :id => nil)
+      song.save()
+      expect(song.album()).to(eq(album))
+    end
+  end
 
   describe('#==') do
     it("is the same song if it has the same attributes as another song") do
@@ -118,4 +117,4 @@ require('spec_helper')
       expect(song.album()).to(eq(album))
     end
   end
-# end
+end
