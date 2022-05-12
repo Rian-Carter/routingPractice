@@ -1,6 +1,6 @@
 require('spec_helper')
 
-describe '#Album' do
+describe ('#Album') do
   describe('#songs') do
     it("returns an album's songs") do
       album = Album.new(:name => "Giant Steps", :id => nil)

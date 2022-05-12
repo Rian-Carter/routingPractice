@@ -3,12 +3,10 @@ require('sinatra')
 require('sinatra/reloader')
 require('./lib/album')
 require('./lib/song')
-require('./lib/artists')
+require('./lib/artist')
 require('pry')
 require('./db_access.rb')
 also_reload('lib/**/*.rb')
-
-# DB = PG.connect({:dbname => "record_store"})
 
 get('/test') do
   @something = "this is a variable"
@@ -29,7 +27,6 @@ get('/albums') do
   erb(:albums)
 end
 
-
 get('/albums/new') do
   # "This will take us to a page with a form for adding a new album."
   erb(:new_album)
@@ -43,7 +40,7 @@ end
 
 post('/albums') do
   name = params[:album_name]
-  album = Album.new(name, nil)
+  album = Album.new(:name => name, :id => nil)
   album.save()
   @albums = Album.all() #Adding this line will the error
   erb(:albums)
@@ -85,7 +82,7 @@ end
 # Post a new song. After the song is added, Sinatra will route to the view for the album the song belongs to.
 post('/albums/:id/songs') do
   @album = Album.find(params[:id].to_i())
-  song = Song.new(params[:song_name], @album.id, nil)
+  song = Song.new({:name => params[:song_name], :album_id => @album.id, :id => nil})
   song.save()
   erb(:album)
 end
@@ -106,9 +103,9 @@ delete('/albums/:id/songs/:song_id') do
   erb(:album)
 end
 
-get('/artists')
-  @artists = Artist.all
-  erb(:artists)
-end
+# get('/artists') do
+#   @artists = Artist.all
+#   erb(:artists)
+# end
 
 
