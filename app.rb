@@ -8,11 +8,6 @@ require('pry')
 require('./db_access.rb')
 also_reload('lib/**/*.rb')
 
-get('/test') do
-  @something = "this is a variable"
-  erb(:whatever)
-end
-
 get('/') do
   # "This will be our home page. '/' is always the root route in a Sinatra application."
   @albums = Album.all
